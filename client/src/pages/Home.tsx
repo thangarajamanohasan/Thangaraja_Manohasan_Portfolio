@@ -1151,7 +1151,7 @@ ${contactForm.message}
                   generation, and custom customer dashboard.
                 </p>
                 <div className="flex flex-wrap gap-1.5 pt-2">
-                  {["HTML", "CSS", "JS", "PHP", "MySQL", "Tailwind"].map(
+                  {["HTML", "CSS", "JS" ].map(
                     (t, idx) => (
                       <span
                         key={idx}
