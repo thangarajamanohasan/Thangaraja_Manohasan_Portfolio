@@ -34,6 +34,7 @@ import {
   Award,
   User,
   Sparkles,
+  Star,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -102,6 +103,84 @@ Portfolio: Modern Minimal Tech Portfolio`;
     } else {
       fallbackCopyText(contactInfo);
     }
+  };
+
+
+  const [reviews, setReviews] = useState<
+    {
+      id: number;
+      name: string;
+      email: string;
+      rating: number;
+      message: string;
+      date: string;
+    }[]
+  >([]);
+
+  const [reviewForm, setReviewForm] = useState({
+    name: "",
+    email: "",
+    rating: 5,
+    message: "",
+  });
+
+  const [isReviewSubmitting, setIsReviewSubmitting] = useState(false);
+
+  useEffect(() => {
+    const savedReviews = localStorage.getItem("manoPortfolioReviews");
+
+    if (savedReviews) {
+      setReviews(JSON.parse(savedReviews));
+    }
+  }, []);
+
+
+  const handleReviewSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (
+      !reviewForm.name.trim() ||
+      !reviewForm.email.trim() ||
+      !reviewForm.message.trim()
+    ) {
+      toast.error("Please complete all required fields.");
+      return;
+    }
+
+    setIsReviewSubmitting(true);
+
+    const newReview = {
+      id: Date.now(),
+      name: reviewForm.name.trim(),
+      email: reviewForm.email.trim(),
+      rating: reviewForm.rating,
+      message: reviewForm.message.trim(),
+      date: new Date().toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }),
+    };
+
+    const updatedReviews = [newReview, ...reviews];
+
+    setReviews(updatedReviews);
+
+    localStorage.setItem(
+      "manoPortfolioReviews",
+      JSON.stringify(updatedReviews)
+    );
+
+    setReviewForm({
+      name: "",
+      email: "",
+      rating: 5,
+      message: "",
+    });
+
+    setIsReviewSubmitting(false);
+
+    toast.success("Thank you! Your review has been submitted.");
   };
 
   const fallbackCopyText = (text: string) => {
@@ -1152,7 +1231,7 @@ ${contactForm.message}
                     <span>Repository</span>
                   </a>
 
-                 
+
                 </div>
               </CardContent>
             </Card>
@@ -1199,12 +1278,12 @@ ${contactForm.message}
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-blue-600 transition-colors"
                   >
-                    
+
                     <span>What you're looking at right now!
-</span>
+                    </span>
                   </a>
 
-                 
+
                 </div>
               </CardContent>
             </Card>
@@ -1442,6 +1521,314 @@ ${contactForm.message}
           </div>
         </div>
       </motion.section>
+
+
+  
+      {/* Public Reviews Section */}
+      <motion.section
+        id="reviews"
+        className="py-20 bg-background border-y border-border"
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 text-blue-700 dark:text-blue-300 text-xs font-semibold">
+              <MessageSquare className="w-3.5 h-3.5" />
+              <span>Public Feedback</span>
+            </div>
+
+            <h2 className="text-xs font-bold tracking-widest text-blue-600 uppercase font-heading">
+              Reviews & Testimonials
+            </h2>
+
+            <h3 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading">
+              What People Say About My Work
+            </h3>
+
+            <p className="text-muted-foreground text-base">
+              Visited my portfolio? Share your honest experience, feedback, or
+              suggestions. Your review will be displayed publicly.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+            {/* Review Form */}
+            <div className="lg:col-span-5">
+              <Card className="border border-border bg-card shadow-sm rounded-2xl">
+                <CardContent className="p-6 sm:p-8">
+
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-11 h-11 rounded-xl bg-blue-600/10 text-blue-600 flex items-center justify-center">
+                      <MessageSquare className="w-5 h-5" />
+                    </div>
+
+                    <div>
+                      <h4 className="font-bold text-lg font-heading">
+                        Leave a Review
+                      </h4>
+
+                      <p className="text-xs text-muted-foreground">
+                        Your feedback is appreciated.
+                      </p>
+                    </div>
+                  </div>
+
+                  <form onSubmit={handleReviewSubmit} className="space-y-5">
+
+                    {/* Name */}
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-muted-foreground">
+                        Your Name *
+                      </label>
+
+                      <input
+                        type="text"
+                        required
+                        value={reviewForm.name}
+                        onChange={(e) =>
+                          setReviewForm({
+                            ...reviewForm,
+                            name: e.target.value,
+                          })
+                        }
+                        placeholder="Enter your name"
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all"
+                      />
+                    </div>
+
+                    {/* Email */}
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-muted-foreground">
+                        Email Address *
+                      </label>
+
+                      <input
+                        type="email"
+                        required
+                        value={reviewForm.email}
+                        onChange={(e) =>
+                          setReviewForm({
+                            ...reviewForm,
+                            email: e.target.value,
+                          })
+                        }
+                        placeholder="your@email.com"
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all"
+                      />
+
+                      <p className="text-[10px] text-muted-foreground">
+                        Your email will be publicly displayed with your review.
+                      </p>
+                    </div>
+
+                    {/* Rating */}
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-muted-foreground">
+                        Your Rating *
+                      </label>
+
+                      <div className="flex items-center gap-2">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <button
+                            key={star}
+                            type="button"
+                            onClick={() =>
+                              setReviewForm({
+                                ...reviewForm,
+                                rating: star,
+                              })
+                            }
+                            className="p-1 transition-transform hover:scale-110"
+                            aria-label={`${star} star rating`}
+                          >
+                            <Star
+                              className={`w-7 h-7 transition-colors ${star <= reviewForm.rating
+                                  ? "fill-yellow-400 text-yellow-400"
+                                  : "text-muted-foreground"
+                                }`}
+                            />
+                          </button>
+                        ))}
+
+                        <span className="ml-2 text-sm font-semibold text-muted-foreground">
+                          {reviewForm.rating}/5
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Review Message */}
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-muted-foreground">
+                        Your Review *
+                      </label>
+
+                      <textarea
+                        required
+                        rows={5}
+                        maxLength={500}
+                        value={reviewForm.message}
+                        onChange={(e) =>
+                          setReviewForm({
+                            ...reviewForm,
+                            message: e.target.value,
+                          })
+                        }
+                        placeholder="Share your experience or feedback..."
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none transition-all"
+                      />
+
+                      <div className="text-right text-[10px] text-muted-foreground">
+                        {reviewForm.message.length}/500
+                      </div>
+                    </div>
+
+                    {/* Submit */}
+                    <button
+                      type="submit"
+                      disabled={isReviewSubmitting}
+                      className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 shadow-md hover:shadow-lg transition-all disabled:opacity-50"
+                    >
+                      {isReviewSubmitting ? (
+                        <>
+                          <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                          <span>Submitting...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          <span>Submit Review</span>
+                        </>
+                      )}
+                    </button>
+
+                  </form>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Public Reviews */}
+            <div className="lg:col-span-7">
+
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h4 className="text-xl font-bold font-heading">
+                    Visitor Reviews
+                  </h4>
+
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {reviews.length}{" "}
+                    {reviews.length === 1 ? "review" : "reviews"} published
+                  </p>
+                </div>
+
+                {reviews.length > 0 && (
+                  <div className="flex items-center gap-1 px-3 py-2 rounded-lg bg-secondary border border-border">
+                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+
+                    <span className="text-sm font-bold">
+                      {(
+                        reviews.reduce((sum, review) => sum + review.rating, 0) /
+                        reviews.length
+                      ).toFixed(1)}
+                    </span>
+
+                    <span className="text-xs text-muted-foreground">
+                      / 5
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {reviews.length === 0 ? (
+                <div className="min-h-[300px] rounded-2xl border border-dashed border-border bg-card flex flex-col items-center justify-center text-center p-8">
+                  <div className="w-14 h-14 rounded-2xl bg-blue-600/10 text-blue-600 flex items-center justify-center mb-4">
+                    <MessageSquare className="w-7 h-7" />
+                  </div>
+
+                  <h4 className="font-bold text-lg font-heading">
+                    Be the First to Review
+                  </h4>
+
+                  <p className="text-sm text-muted-foreground max-w-sm mt-2">
+                    No reviews have been submitted yet. Share your experience and
+                    become the first visitor to leave feedback.
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-4 max-h-[620px] overflow-y-auto pr-1">
+
+                  {reviews.map((review) => (
+                    <motion.div
+                      key={review.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-5 sm:p-6 rounded-2xl bg-card border border-border shadow-sm hover:shadow-md transition-all"
+                    >
+
+                      {/* Reviewer Header */}
+                      <div className="flex items-start justify-between gap-4">
+
+                        <div className="flex items-center gap-3 min-w-0">
+
+                          <div className="w-11 h-11 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-white flex items-center justify-center font-bold text-sm shrink-0">
+                            {review.name.charAt(0).toUpperCase()}
+                          </div>
+
+                          <div className="min-w-0">
+                            <h5 className="font-bold text-sm truncate">
+                              {review.name}
+                            </h5>
+
+                            <p className="text-[11px] text-muted-foreground truncate">
+                              {review.email}
+                            </p>
+                          </div>
+
+                        </div>
+
+                        <span className="text-[10px] text-muted-foreground whitespace-nowrap">
+                          {review.date}
+                        </span>
+
+                      </div>
+
+                      {/* Stars */}
+                      <div className="flex items-center gap-1 mt-4">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star
+                            key={star}
+                            className={`w-4 h-4 ${star <= review.rating
+                                ? "fill-yellow-400 text-yellow-400"
+                                : "text-muted-foreground"
+                              }`}
+                          />
+                        ))}
+                      </div>
+
+                      {/* Review */}
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                        "{review.message}"
+                      </p>
+
+                    </motion.div>
+                  ))}
+
+                </div>
+              )}
+
+            </div>
+
+          </div>
+        </div>
+      </motion.section>
+
+
 
       {/* Contact Section */}
       <motion.section
