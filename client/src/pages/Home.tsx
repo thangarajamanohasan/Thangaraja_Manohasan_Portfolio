@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Figma } from "lucide-react";
-import { supabase } from "@/lib/supabase";
 import { motion } from "framer-motion";
-
 import {
   Code,
   Server,
@@ -116,7 +114,6 @@ Portfolio: Modern Minimal Tech Portfolio`;
       rating: number;
       message: string;
       date: string;
-      created_at?: string;
     }[]
   >([]);
 
@@ -128,28 +125,17 @@ Portfolio: Modern Minimal Tech Portfolio`;
   });
 
   const [isReviewSubmitting, setIsReviewSubmitting] = useState(false);
-  const loadReviews = async () => {
-    const { data, error } = await supabase
-      .from("reviews")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (error) {
-      console.error("Failed to load reviews:", error);
-      return;
-    }
-
-    setReviews(data ?? []);
-  };
 
   useEffect(() => {
-    loadReviews();
+    const savedReviews = localStorage.getItem("manoPortfolioReviews");
+
+    if (savedReviews) {
+      setReviews(JSON.parse(savedReviews));
+    }
   }, []);
 
 
-  const handleReviewSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleReviewSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (
@@ -163,43 +149,38 @@ Portfolio: Modern Minimal Tech Portfolio`;
 
     setIsReviewSubmitting(true);
 
-    try {
-      const { error } = await supabase
-        .from("reviews")
-        .insert({
-          name: reviewForm.name.trim(),
-          email: reviewForm.email.trim(),
-          rating: reviewForm.rating,
-          message: reviewForm.message.trim(),
-          date: new Date().toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          }),
-        });
+    const newReview = {
+      id: Date.now(),
+      name: reviewForm.name.trim(),
+      email: reviewForm.email.trim(),
+      rating: reviewForm.rating,
+      message: reviewForm.message.trim(),
+      date: new Date().toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }),
+    };
 
-      if (error) {
-        console.error("Review submission failed:", error);
-        toast.error("Failed to submit review.");
-        return;
-      }
+    const updatedReviews = [newReview, ...reviews];
 
-      await loadReviews();
+    setReviews(updatedReviews);
 
-      setReviewForm({
-        name: "",
-        email: "",
-        rating: 5,
-        message: "",
-      });
+    localStorage.setItem(
+      "manoPortfolioReviews",
+      JSON.stringify(updatedReviews)
+    );
 
-      toast.success("Thank you! Your review has been submitted.");
-    } catch (error) {
-      console.error("Unexpected review error:", error);
-      toast.error("Something went wrong.");
-    } finally {
-      setIsReviewSubmitting(false);
-    }
+    setReviewForm({
+      name: "",
+      email: "",
+      rating: 5,
+      message: "",
+    });
+
+    setIsReviewSubmitting(false);
+
+    toast.success("Thank you! Your review has been submitted.");
   };
 
   const fallbackCopyText = (text: string) => {
@@ -1170,7 +1151,7 @@ ${contactForm.message}
                   generation, and custom customer dashboard.
                 </p>
                 <div className="flex flex-wrap gap-1.5 pt-2">
-                  {["HTML", "CSS", "JS"].map(
+                  {["HTML", "CSS", "JS" ].map(
                     (t, idx) => (
                       <span
                         key={idx}
@@ -1542,7 +1523,7 @@ ${contactForm.message}
       </motion.section>
 
 
-
+  
       {/* Public Reviews Section */}
       <motion.section
         id="reviews"
@@ -1668,8 +1649,8 @@ ${contactForm.message}
                           >
                             <Star
                               className={`w-7 h-7 transition-colors ${star <= reviewForm.rating
-                                ? "fill-yellow-400 text-yellow-400"
-                                : "text-muted-foreground"
+                                  ? "fill-yellow-400 text-yellow-400"
+                                  : "text-muted-foreground"
                                 }`}
                             />
                           </button>
@@ -1823,8 +1804,8 @@ ${contactForm.message}
                           <Star
                             key={star}
                             className={`w-4 h-4 ${star <= review.rating
-                              ? "fill-yellow-400 text-yellow-400"
-                              : "text-muted-foreground"
+                                ? "fill-yellow-400 text-yellow-400"
+                                : "text-muted-foreground"
                               }`}
                           />
                         ))}
