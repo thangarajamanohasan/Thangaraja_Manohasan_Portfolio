@@ -5,6 +5,7 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import PersonSchema from "./components/SEO";
 
 
 function Router() {
@@ -25,6 +26,9 @@ function Router() {
 
 function App() {
   return (
+    
+    <>
+    <PersonSchema />
     <ErrorBoundary>
       <ThemeProvider
         defaultTheme="light"
@@ -36,7 +40,9 @@ function App() {
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
+     </>
   );
+
 }
 
 export default App;

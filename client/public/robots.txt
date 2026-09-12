@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://thangaraja-manohasan-portfolio-y63u.vercel.app/sitemap.xml
