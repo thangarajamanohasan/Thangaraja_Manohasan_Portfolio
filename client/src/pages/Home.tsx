@@ -1090,7 +1090,7 @@ ${contactForm.message}
                     IT Support Trainee
                   </h4>
                   <p className="text-xs font-semibold text-blue-600">
-                    Rechal Printers
+                    Rechal Printers - Talwakelle
                   </p>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
