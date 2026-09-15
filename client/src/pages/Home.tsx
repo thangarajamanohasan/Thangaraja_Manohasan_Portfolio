@@ -105,7 +105,6 @@ Portfolio: Modern Minimal Tech Portfolio`;
     }
   };
 
-
   const [reviews, setReviews] = useState<
     {
       id: number;
@@ -133,7 +132,6 @@ Portfolio: Modern Minimal Tech Portfolio`;
       setReviews(JSON.parse(savedReviews));
     }
   }, []);
-
 
   const handleReviewSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -1151,16 +1149,14 @@ ${contactForm.message}
                   generation, and custom customer dashboard.
                 </p>
                 <div className="flex flex-wrap gap-1.5 pt-2">
-                  {["HTML", "CSS", "JS" ].map(
-                    (t, idx) => (
-                      <span
-                        key={idx}
-                        className="text-[10px] px-2 py-0.5 rounded bg-secondary font-medium"
-                      >
-                        {t}
-                      </span>
-                    )
-                  )}
+                  {["HTML", "CSS", "JS"].map((t, idx) => (
+                    <span
+                      key={idx}
+                      className="text-[10px] px-2 py-0.5 rounded bg-secondary font-medium"
+                    >
+                      {t}
+                    </span>
+                  ))}
                 </div>
 
                 <div className="flex items-center gap-3 pt-3 border-t border-border mt-2">
@@ -1230,8 +1226,6 @@ ${contactForm.message}
                     <Github className="w-4 h-4" />
                     <span>Repository</span>
                   </a>
-
-
                 </div>
               </CardContent>
             </Card>
@@ -1278,12 +1272,8 @@ ${contactForm.message}
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-blue-600 transition-colors"
                   >
-
-                    <span>What you're looking at right now!
-                    </span>
+                    <span>What you're looking at right now!</span>
                   </a>
-
-
                 </div>
               </CardContent>
             </Card>
@@ -1305,20 +1295,23 @@ ${contactForm.message}
                 </h4>
 
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Professional food ordering application wireframe designed in Figma,
-                  featuring an intuitive user flow, modern mobile-first interface, and a
-                  seamless ordering experience from menu browsing to checkout.
+                  Professional food ordering application wireframe designed in
+                  Figma, featuring an intuitive user flow, modern mobile-first
+                  interface, and a seamless ordering experience from menu
+                  browsing to checkout.
                 </p>
 
                 <div className="flex flex-wrap gap-1.5 pt-2">
-                  {["Figma", "Wireframe", "UI/UX", "Prototype"].map((t, idx) => (
-                    <span
-                      key={idx}
-                      className="text-[10px] px-2 py-0.5 rounded bg-secondary font-medium"
-                    >
-                      {t}
-                    </span>
-                  ))}
+                  {["Figma", "Wireframe", "UI/UX", "Prototype"].map(
+                    (t, idx) => (
+                      <span
+                        key={idx}
+                        className="text-[10px] px-2 py-0.5 rounded bg-secondary font-medium"
+                      >
+                        {t}
+                      </span>
+                    )
+                  )}
                 </div>
 
                 <div className="flex items-center gap-3 pt-3 border-t border-border mt-2">
@@ -1334,8 +1327,6 @@ ${contactForm.message}
                 </div>
               </CardContent>
             </Card>
-
-
 
             {/* Project 4 */}
             <Card className="border border-border bg-background shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
@@ -1440,7 +1431,6 @@ ${contactForm.message}
                 </div>
               </CardContent>
             </Card>
-
           </div>
         </div>
       </motion.section>
@@ -1521,11 +1511,6 @@ ${contactForm.message}
           </div>
         </div>
       </motion.section>
-
-
-  
-     
-
 
       {/* Contact Section */}
       <motion.section
@@ -1610,57 +1595,121 @@ ${contactForm.message}
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-border space-y-3">
-                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                <div>
+                  <h4 className="font-semibold text-lg mb-4">
                     Online Profiles
-                  </span>
-                  <div className="flex flex-wrap gap-2">
-                    <a
-                      href="https://linkedin.com/in/thangaraja-manohasan-973871312/"
+                  </h4>
+
+                  <div className="flex flex-wrap gap-3">
+                    {/* LinkedIn */}
+                    <motion.a
+                      href="https://www.linkedin.com/in/thangaraja-manohasan-973871312/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-lg bg-background border border-border text-muted-foreground hover:text-blue-600 hover:border-blue-600 transition-colors"
-                      title="LinkedIn"
+                      aria-label="LinkedIn"
+                      whileHover={{ scale: 1.12, y: -4 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 15,
+                      }}
+                      className="group relative w-11 h-11 rounded-full border border-blue-500/30 bg-blue-500/10 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
                     >
-                      <Linkedin className="w-4 h-4" />
-                    </a>
-                    <a
+                      <Linkedin className="w-5 h-5" />
+
+                      <span className="absolute -top-9 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap rounded-md bg-slate-900 text-white text-xs px-2 py-1 shadow-lg">
+                        LinkedIn
+                      </span>
+                    </motion.a>
+
+                    {/* GitHub */}
+                    <motion.a
                       href="https://github.com/thangarajamanohasan"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-lg bg-background border border-border text-muted-foreground hover:text-blue-600 hover:border-blue-600 transition-colors"
-                      title="GitHub"
+                      aria-label="GitHub"
+                      whileHover={{ scale: 1.12, y: -4 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 15,
+                      }}
+                      className="group relative w-11 h-11 rounded-full border border-gray-500/30 bg-gray-500/10 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-gray-800 hover:text-white hover:shadow-lg hover:shadow-gray-500/30 transition-all duration-300"
                     >
-                      <Github className="w-4 h-4" />
-                    </a>
+                      <Github className="w-5 h-5" />
+
+                      <span className="absolute -top-9 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap rounded-md bg-slate-900 text-white text-xs px-2 py-1 shadow-lg">
+                        GitHub
+                      </span>
+                    </motion.a>
 
                     {/* Facebook */}
-                    <a
-                      href="https://facebook.com/Thangaraja Manohasan"
+                    <motion.a
+                      href="https://www.facebook.com/ThangarajaManohasan"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-lg bg-background border border-border text-muted-foreground hover:text-blue-600 hover:border-blue-600 transition-colors"
-                      title="Facebook"
+                      aria-label="Facebook"
+                      whileHover={{ scale: 1.12, y: -4 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 15,
+                      }}
+                      className="group relative w-11 h-11 rounded-full border border-blue-600/30 bg-blue-600/10 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white hover:shadow-lg hover:shadow-blue-600/30 transition-all duration-300"
                     >
-                      <Facebook className="w-4 h-4" />
-                    </a>
+                      <Facebook className="w-5 h-5" />
+
+                      <span className="absolute -top-9 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap rounded-md bg-slate-900 text-white text-xs px-2 py-1 shadow-lg">
+                        Facebook
+                      </span>
+                    </motion.a>
 
                     {/* Instagram */}
-                    <a
-                      href="https://instagram.com/thangarajamanohasan"
+                    <motion.a
+                      href="https://www.instagram.com/thangarajamanohasan"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-lg bg-background border border-border text-muted-foreground hover:text-pink-600 hover:border-pink-600 transition-colors"
-                      title="Instagram"
+                      aria-label="Instagram"
+                      whileHover={{ scale: 1.12, y: -4 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 15,
+                      }}
+                      className="group relative w-11 h-11 rounded-full border border-pink-500/30 bg-pink-500/10 flex items-center justify-center text-pink-500 hover:bg-pink-500 hover:text-white hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300"
                     >
-                      <Instagram className="w-4 h-4" />
-                    </a>
-                    <button
-                      onClick={handleShareContact}
-                      className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition-colors ml-auto"
+                      <Instagram className="w-5 h-5" />
+
+                      <span className="absolute -top-9 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap rounded-md bg-slate-900 text-white text-xs px-2 py-1 shadow-lg">
+                        Instagram
+                      </span>
+                    </motion.a>
+
+                    {/* Freelancer */}
+                    <motion.a
+                      href="https://www.freelancer.in/u/Manohasan2743"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Freelancer"
+                      whileHover={{ scale: 1.12, y: -4 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 15,
+                      }}
+                      className="group relative w-11 h-11 rounded-full border border-cyan-500/30 bg-cyan-500/10 flex items-center justify-center text-cyan-500 hover:bg-cyan-500 hover:text-white hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
                     >
-                      <Share2 className="w-3.5 h-3.5" /> Share Contact
-                    </button>
+                      <Briefcase className="w-5 h-5" />
+
+                      <span className="absolute -top-9 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap rounded-md bg-slate-900 text-white text-xs px-2 py-1 shadow-lg">
+                        Freelancer
+                      </span>
+                    </motion.a>
                   </div>
                 </div>
               </div>
