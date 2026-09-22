@@ -482,14 +482,17 @@ ${contactForm.message}
                     ICT Technician
                   </div>
                 </div>
+
                 <div>
                   <div className="text-2xl sm:text-3xl font-extrabold text-blue-600 font-heading">
-                    WebCraft
+                    Web Dev
                   </div>
                   <div className="text-xs text-muted-foreground font-medium">
-                    Startup Business Partner
+                    Technical Skills
                   </div>
                 </div>
+
+                <div></div>
               </div>
             </div>
 
@@ -1032,22 +1035,26 @@ ${contactForm.message}
               <CardContent className="p-6 space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300">
-                    2024 - Present
+                    IT Solutions
                   </span>
-                  <Briefcase className="w-5 h-5 text-blue-600" />
+                  <Wrench className="w-5 h-5 text-blue-600" />
                 </div>
+
                 <div>
                   <h4 className="text-xl font-bold font-heading">
-                    Web Developer & Partner
+                    IT Solutions & Technical Support
                   </h4>
                   <p className="text-xs font-semibold text-blue-600">
-                    WebCraft Creations Startup Business Partner{" "}
+                    Professional IT Services
                   </p>
                 </div>
+
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Leading web development, UI implementation, database
-                  architecture, client requirement analysis, and digital
-                  solutions creation for businesses.
+                  Providing reliable IT solutions and technical support,
+                  including computer hardware troubleshooting, software
+                  installation and configuration, basic networking, system
+                  maintenance, and web development solutions to help individuals
+                  and businesses improve their technology experience.
                 </p>
               </CardContent>
             </Card>
