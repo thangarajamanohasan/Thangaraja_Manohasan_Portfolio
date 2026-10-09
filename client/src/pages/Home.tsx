@@ -1136,8 +1136,19 @@ ${contactForm.message}
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Project 1 */}
-            <Card className="border border-border bg-background shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
-              <CardContent className="p-6 space-y-4">
+            <Card className="group overflow-hidden border border-border bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col">
+              {/* Replace the sample preview in public/projects with your project screenshot */}
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-border/60 bg-secondary">
+                <img
+                  src="/projects/webcraft-creations.png"
+                  alt="WebCraft Creations Agency project preview"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 to-transparent" />
+              </div>
+              <CardContent className="p-6 space-y-4 flex-1">
                 <div className="flex items-center justify-between">
                   <Badge
                     variant="outline"
@@ -1191,8 +1202,19 @@ ${contactForm.message}
             </Card>
 
             {/* Project 2 */}
-            <Card className="border border-border bg-background shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
-              <CardContent className="p-6 space-y-4">
+            <Card className="group overflow-hidden border border-border bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col">
+              {/* Replace the sample preview in public/projects with your project screenshot */}
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-border/60 bg-secondary">
+                <img
+                  src="/projects/tea-trails.png"
+                  alt="Tea Trails Community Tours website preview"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 to-transparent" />
+              </div>
+              <CardContent className="p-6 space-y-4 flex-1">
                 <div className="flex items-center justify-between">
                   <Badge
                     variant="outline"
@@ -1238,8 +1260,19 @@ ${contactForm.message}
             </Card>
 
             {/* Project 3 */}
-            <Card className="border border-border bg-background shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
-              <CardContent className="p-6 space-y-4">
+            <Card className="group overflow-hidden border border-border bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col">
+              {/* Replace the sample preview in public/projects with your project screenshot */}
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-border/60 bg-secondary">
+                <img
+                  src="/projects/personal-portfolio.png"
+                  alt="Personal Portfolio website preview"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 to-transparent" />
+              </div>
+              <CardContent className="p-6 space-y-4 flex-1">
                 <div className="flex items-center justify-between">
                   <Badge
                     variant="outline"
@@ -1285,8 +1318,19 @@ ${contactForm.message}
               </CardContent>
             </Card>
 
-            <Card className="border border-border bg-background shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
-              <CardContent className="p-6 space-y-4">
+            <Card className="group overflow-hidden border border-border bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col">
+              {/* Replace the sample preview in public/projects with your project screenshot */}
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-border/60 bg-secondary">
+                <img
+                  src="/projects/food-ordering-wireframe.png"
+                  alt="Food Ordering System Figma wireframe preview"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 to-transparent" />
+              </div>
+              <CardContent className="p-6 space-y-4 flex-1">
                 <div className="flex items-center justify-between">
                   <Badge
                     variant="outline"
@@ -1336,8 +1380,19 @@ ${contactForm.message}
             </Card>
 
             {/* Project 4 */}
-            <Card className="border border-border bg-background shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
-              <CardContent className="p-6 space-y-4">
+            <Card className="group overflow-hidden border border-border bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col">
+              {/* Replace the sample preview in public/projects with your project screenshot */}
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-border/60 bg-secondary">
+                <img
+                  src="/projects/student-qr-attendance.png"
+                  alt="Student QR Attendance System dashboard preview"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 to-transparent" />
+              </div>
+              <CardContent className="p-6 space-y-4 flex-1">
                 <div className="flex items-center justify-between">
                   <Badge
                     variant="outline"
@@ -1393,51 +1448,7 @@ ${contactForm.message}
             </Card>
 
             {/* Project 5 */}
-            <Card className="border border-border bg-background shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
-              <CardContent className="p-6 space-y-4">
-                <div className="flex items-center justify-between">
-                  <Badge
-                    variant="outline"
-                    className="text-blue-600 border-blue-200 bg-blue-50 dark:bg-blue-950"
-                  >
-                    Desktop Development
-                  </Badge>
-                  <Cpu className="w-5 h-5 text-blue-600" />
-                </div>
-                <h4 className="text-xl font-bold font-heading">
-                  C# Student Management System
-                </h4>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Robust desktop application built with Windows Forms and SQL
-                  Server for student registration, database management, and
-                  record handling.
-                </p>
-                <div className="flex flex-wrap gap-1.5 pt-2">
-                  {["C#", "Windows Forms", "SQL Server", ".NET"].map(
-                    (t, idx) => (
-                      <span
-                        key={idx}
-                        className="text-[10px] px-2 py-0.5 rounded bg-secondary font-medium"
-                      >
-                        {t}
-                      </span>
-                    )
-                  )}
-                </div>
-
-                <div className="flex items-center gap-3 pt-3 border-t border-border mt-2">
-                  <a
-                    href="https://github.com/thangarajamanohasan/C-Student-Management-System.git"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-blue-600 transition-colors"
-                  >
-                    <Github className="w-4 h-4" />
-                    <span>Repository</span>
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
+            
           </div>
         </div>
       </motion.section>
